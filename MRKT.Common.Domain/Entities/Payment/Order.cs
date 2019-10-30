@@ -16,37 +16,13 @@ namespace MRKT.Common.Domain.Entities.Payment
             OrderDetails = new HashSet<OrderDetail>();
         }
 
-        private string _shippingAddressJson;
-        private string _billingAddressJson;
-
         public string OrderNumber { get; protected set; }
         public virtual Customer Customer { get; protected set; }
         public Guid CustomerId { get; set; }
+        public Address ShippingAddress { get; set; }
+        public Address BillingAddress { get; set; }
 
         public virtual ICollection<OrderDetail> OrderDetails { get; private set; }
-
-        public Address ShippingAddress
-        {
-            get
-            {
-                return JsonConvert.DeserializeObject<Address>(_shippingAddressJson);
-            }
-            private set
-            {
-                _shippingAddressJson = JsonConvert.SerializeObject(value);
-            }
-        }
-        public Address BillingAddress
-        {
-            get
-            {
-                return JsonConvert.DeserializeObject<Address>(_billingAddressJson);
-            }
-            private set
-            {
-                _billingAddressJson = JsonConvert.SerializeObject(value);
-            }
-        }
 
         public Order(Guid id, string orderNumber, Guid customerId, Address shippingAddress, Address billingAddress)
         {

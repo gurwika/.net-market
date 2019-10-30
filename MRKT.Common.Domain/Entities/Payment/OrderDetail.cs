@@ -16,8 +16,6 @@ namespace MRKT.Common.Domain.Entities.Payment
             CreatedAt = DateTime.Now;
         }
 
-        private string _takeOutAddressJson;
-
         public virtual Seller Seller { get; protected set; }
         public Guid SellerId { get; set; }
         public virtual Stock Stock { get; protected set; }
@@ -28,18 +26,7 @@ namespace MRKT.Common.Domain.Entities.Payment
         public int ShippingPrice { get; protected set; }
         public int Quantity { get; protected set; }
         public OrderDetailStatusType Status { get; protected set; }
-
-        public Address TakeOutAddress
-        {
-            get
-            {
-                return JsonConvert.DeserializeObject<Address>(_takeOutAddressJson);
-            }
-            private set
-            {
-                _takeOutAddressJson = JsonConvert.SerializeObject(value);
-            }
-        }
+        public Address TakeOutAddress { get; protected set; }
 
         public OrderDetail(Guid id, Guid stockId, Guid orderId, int price, int shippingPrice, int quantity, Address takeOutAddress)
         {

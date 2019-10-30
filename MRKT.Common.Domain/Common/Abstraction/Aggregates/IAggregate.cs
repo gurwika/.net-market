@@ -6,6 +6,7 @@ namespace MRKT.Common.Domain.Common.Abstraction.Aggregates
     {
         Guid Id { get; }
         public DateTime CreatedAt { get; }
+        public string LastModifiedBy { get; }
         public DateTime? LastModified { get; }
         public DateTime? DeletedAt { get; }
     }

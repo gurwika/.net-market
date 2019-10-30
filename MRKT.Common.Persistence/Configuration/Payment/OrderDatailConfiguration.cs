@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using MRKT.Common.Domain.Entities.Application;
 using MRKT.Common.Domain.Entities.Payment;
+using Newtonsoft.Json;
 
 namespace MRKT.Common.Persistence.Configuration.Payment
 {
@@ -10,8 +12,12 @@ namespace MRKT.Common.Persistence.Configuration.Payment
         {
             builder.Ignore(c => c.PendingEvents);
 
-            builder.Ignore(x => x.TakeOutAddress);
-            builder.Property<string>("_takeOutAddressJson").HasField("_takeOutAddressJson").HasColumnName("TakeOutAddressJson").HasColumnType("json");
+            builder.Property(p => p.TakeOutAddress)
+                    .HasConversion(
+                        takeOutAddress => JsonConvert.SerializeObject(takeOutAddress),
+                        dbValue => JsonConvert.DeserializeObject<Address>(dbValue)
+                    )
+                .HasColumnType("json");
 
             builder.HasOne(e => e.Stock)
                 .WithMany(e => e.OrderDetails)

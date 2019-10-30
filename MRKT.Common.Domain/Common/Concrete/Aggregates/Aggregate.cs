@@ -11,6 +11,8 @@ namespace MRKT.Common.Domain.Common.Concrete.Aggregates
         [JsonIgnore]
         public DateTime CreatedAt { get; protected set; }
         [JsonIgnore]
+        public string LastModifiedBy { get; protected set; }
+        [JsonIgnore]
         public DateTime? LastModified { get; protected set; }
         [JsonIgnore]
         public DateTime? DeletedAt { get; protected set; }
@@ -18,6 +20,18 @@ namespace MRKT.Common.Domain.Common.Concrete.Aggregates
         protected Aggregate()
         {
             CreatedAt = DateTime.Now;
+        }
+
+        public void UpdateAddedCredentials(DateTime createdAt, string lastModifiedBy)
+        {
+            CreatedAt = createdAt;
+            LastModifiedBy = lastModifiedBy;
+        }
+
+        public void UpdateModifiedCredentials(DateTime lastModified, string lastModifiedBy)
+        {
+            LastModified = lastModified;
+            LastModifiedBy = lastModifiedBy;
         }
     }
 }

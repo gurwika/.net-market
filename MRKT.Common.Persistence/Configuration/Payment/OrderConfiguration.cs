@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using MRKT.Common.Domain.Entities.Application;
 using MRKT.Common.Domain.Entities.Payment;
+using Newtonsoft.Json;
 
 namespace MRKT.Common.Persistence.Configuration.Payment
 {
@@ -13,13 +15,20 @@ namespace MRKT.Common.Persistence.Configuration.Payment
             builder.Property(e => e.OrderNumber)
                 .IsRequired()
                 .HasMaxLength(200);
-            
-            builder.Ignore(x => x.ShippingAddress);
-            builder.Property<string>("_shippingAddressJson").HasField("_shippingAddressJson").HasColumnName("ShippingAddressJson").HasColumnType("json");
 
-            builder.Ignore(x => x.BillingAddress);
-            builder.Property<string>("_billingAddressJson").HasField("_billingAddressJson").HasColumnName("BillingAddressJson").HasColumnType("json");
+            builder.Property(p => p.ShippingAddress)
+                    .HasConversion(
+                        shippingAddress => JsonConvert.SerializeObject(shippingAddress),
+                        dbValue => JsonConvert.DeserializeObject<Address>(dbValue)
+                    )
+                .HasColumnType("json");
 
+            builder.Property(p => p.BillingAddress)
+                    .HasConversion(
+                        billingAddress => JsonConvert.SerializeObject(billingAddress),
+                        dbValue => JsonConvert.DeserializeObject<Address>(dbValue)
+                    )
+                .HasColumnType("json");
 
             builder.HasOne(e => e.Customer)
                 .WithMany(e => e.Orders)
