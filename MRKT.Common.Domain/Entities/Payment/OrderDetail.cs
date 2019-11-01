@@ -13,7 +13,6 @@ namespace MRKT.Common.Domain.Entities.Payment
     {
         public OrderDetail()
         {
-            CreatedAt = DateTime.Now;
         }
 
         public virtual Seller Seller { get; protected set; }
@@ -39,7 +38,6 @@ namespace MRKT.Common.Domain.Entities.Payment
             OrderId = orderId;
 
             Status = OrderDetailStatusType.PROCESSING;
-            CreatedAt = DateTime.Now;
 
             RiseEvent(
                 new OrderDetailCreatedEevent(

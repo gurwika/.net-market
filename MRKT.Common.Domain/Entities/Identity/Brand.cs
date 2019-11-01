@@ -12,7 +12,6 @@ namespace MRKT.Common.Domain.Entities.Identity
     {
         public Brand()
         {
-            CreatedAt = DateTime.Now;
             Products = new HashSet<Product>();
         }
 
@@ -32,7 +31,6 @@ namespace MRKT.Common.Domain.Entities.Identity
             Description = description;
             PublicUrl = publicUrl;
             SellerId = sellerId;
-            CreatedAt = DateTime.Now;
 
             RiseEvent(
                 new BrandCreatedEvent(
@@ -45,8 +43,6 @@ namespace MRKT.Common.Domain.Entities.Identity
         public void UpdateLogo(string logoUrl)
         {
             LogoUrl = logoUrl;
-
-            LastModified = DateTime.Now;
 
             RiseEvent(
                 new BrandUpdatedEvent(
@@ -61,8 +57,6 @@ namespace MRKT.Common.Domain.Entities.Identity
             DisplayName = displayName;
             Description = description;
             PublicUrl = publicUrl;
-
-            LastModified = DateTime.Now;
 
             RiseEvent(
                 new BrandUpdatedEvent(

@@ -10,7 +10,6 @@ namespace MRKT.Common.Domain.Entities.Production
     {
         public ProductDetail()
         {
-            CreatedAt = DateTime.Now;
             Stocks = new HashSet<Stock>();
         }
 
@@ -29,7 +28,6 @@ namespace MRKT.Common.Domain.Entities.Production
             ThumbnailUrl = thumbnailUrl;
             Info = info;
             ProductId = productId;
-            CreatedAt = DateTime.Now;
 
             RiseEvent(
                 new ProductDetailCreatedEvent(
@@ -44,7 +42,6 @@ namespace MRKT.Common.Domain.Entities.Production
             Name = name;
             ThumbnailUrl = thumbnailUrl;
             Info = info;
-            LastModified = DateTime.Now;
 
             RiseEvent(new ProductDetailUpdatedEvent(
                 Id,

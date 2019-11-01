@@ -13,7 +13,6 @@ namespace MRKT.Common.Domain.Entities.Identity
     {
         public Seller()
         {
-            CreatedAt = DateTime.Now;
             OrderDetails = new HashSet<OrderDetail>();
             Brands = new HashSet<Brand>();
             Addresses = new HashSet<Address>();
@@ -40,7 +39,6 @@ namespace MRKT.Common.Domain.Entities.Identity
             CompanyTaxId = companyTaxId;
             ApplicationUserId = applicationUserId;
             Status = SellerStatusType.INITIAL;
-            CreatedAt = DateTime.Now;
 
             RiseEvent(
                 new SellerCreatedEvent(
@@ -55,8 +53,6 @@ namespace MRKT.Common.Domain.Entities.Identity
             LegalName = legalName;
             BusinessEmail = businessEmail;
 
-            LastModified = DateTime.Now;
-
             RiseEvent(
                 new SellerUpdatedEvent(
                     Id,
@@ -68,7 +64,6 @@ namespace MRKT.Common.Domain.Entities.Identity
         public void Verify()
         {
             Status = SellerStatusType.VERIFIED;
-            LastModified = DateTime.Now;
 
             RiseEvent(new SellerVerifiedEvent(Id));
         }
@@ -76,15 +71,12 @@ namespace MRKT.Common.Domain.Entities.Identity
         public void Suspend()
         {
             Status = SellerStatusType.SUSPENDED;
-            LastModified = DateTime.Now;
 
             RiseEvent(new SellerSuspendedEvent(Id));
         }
 
         public void Delete()
         {
-            DeletedAt = DateTime.Now;
-
             RiseEvent(new SellerDeletedEvent(Id));
         }
     }

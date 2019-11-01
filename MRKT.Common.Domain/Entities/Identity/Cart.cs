@@ -10,7 +10,6 @@ namespace MRKT.Common.Domain.Entities.Identity
     {
         public Cart()
         {
-            CreatedAt = DateTime.Now;
             CartDetails = new HashSet<CartDetail>();
         }
 
@@ -23,7 +22,6 @@ namespace MRKT.Common.Domain.Entities.Identity
         {
             Id = id;
             CustomerId = customerId;
-            CreatedAt = DateTime.Now;
 
             RiseEvent(
                 new CartCreatedEvent(

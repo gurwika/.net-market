@@ -11,7 +11,6 @@ namespace MRKT.Common.Domain.Entities.Production
     {
         public Product()
         {
-            CreatedAt = DateTime.Now;
             ProductDetails = new HashSet<ProductDetail>();
         }
 
@@ -28,7 +27,6 @@ namespace MRKT.Common.Domain.Entities.Production
             Caption = caption;
             BrandId = brandId;
             Published = false;
-            CreatedAt = DateTime.Now;
 
             RiseEvent(
                 new ProductCreatedEvent(
@@ -42,7 +40,6 @@ namespace MRKT.Common.Domain.Entities.Production
         {
             Caption = caption;
             Brand = brand;
-            LastModified = DateTime.Now;
 
             RiseEvent(
                 new ProductUpdatedEvent(
@@ -55,7 +52,6 @@ namespace MRKT.Common.Domain.Entities.Production
         public void Publish()
         {
             Published = true;
-            LastModified = DateTime.Now;
 
             RiseEvent(new ProductPublishedEvent(Id));
         }
@@ -63,7 +59,6 @@ namespace MRKT.Common.Domain.Entities.Production
         public void UnPublish()
         {
             Published = false;
-            LastModified = DateTime.Now;
 
             RiseEvent(new ProductUnPublishedEvent(Id));
         }

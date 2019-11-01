@@ -12,7 +12,6 @@ namespace MRKT.Common.Domain.Entities.Identity
     {
         public CartDetail()
         {
-            CreatedAt = DateTime.Now;
         }
 
         public virtual Stock Stock { get; protected set; }
@@ -28,7 +27,6 @@ namespace MRKT.Common.Domain.Entities.Identity
             StockId = stockId;
             CartId = cartId;
             Quantity = quantity;
-            CreatedAt = DateTime.Now;
 
             RiseEvent(
                 new CartDetailCreatedEvent(
@@ -41,7 +39,6 @@ namespace MRKT.Common.Domain.Entities.Identity
         public void Update(int quantity)
         {
             Quantity = quantity;
-            LastModified = DateTime.Now;
 
             RiseEvent(
                 new CartDetailUpdatedEvent(

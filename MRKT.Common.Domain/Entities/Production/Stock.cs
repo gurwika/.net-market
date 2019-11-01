@@ -13,7 +13,6 @@ namespace MRKT.Common.Domain.Entities.Production
     {
         public Stock()
         {
-            CreatedAt = DateTime.Now;
             CartDetails = new HashSet<CartDetail>();
             OrderDetails = new HashSet<OrderDetail>();
         }
@@ -37,7 +36,6 @@ namespace MRKT.Common.Domain.Entities.Production
             Price = price;
             CanPreOrder = canPreOrder;
             ProductDetailId = productDetailId;
-            CreatedAt = DateTime.Now;
 
             RiseEvent(
                 new StockCreatedEvent(
@@ -53,7 +51,6 @@ namespace MRKT.Common.Domain.Entities.Production
             Size = size;
             Price = price;
             CanPreOrder = canPreOrder;
-            LastModified = DateTime.Now;
 
             RiseEvent(new StockUpdatedEvent(
                 Id,

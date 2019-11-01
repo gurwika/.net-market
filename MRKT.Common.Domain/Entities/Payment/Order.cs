@@ -12,7 +12,6 @@ namespace MRKT.Common.Domain.Entities.Payment
     {
         public Order()
         {
-            CreatedAt = DateTime.Now;
             OrderDetails = new HashSet<OrderDetail>();
         }
 
@@ -31,7 +30,6 @@ namespace MRKT.Common.Domain.Entities.Payment
             CustomerId = customerId;
             BillingAddress = billingAddress;
             ShippingAddress = shippingAddress;
-            CreatedAt = DateTime.Now;
 
             RiseEvent(
                 new OrderCreatedEvent(

@@ -19,7 +19,6 @@ namespace MRKT.Common.Domain.Common.Concrete.Aggregates
 
         protected Aggregate()
         {
-            CreatedAt = DateTime.Now;
         }
 
         public void UpdateAddedCredentials(DateTime createdAt, string lastModifiedBy)

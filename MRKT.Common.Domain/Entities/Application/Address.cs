@@ -11,7 +11,6 @@ namespace MRKT.Common.Domain.Entities.Application
     {
         public Address()
         {
-            CreatedAt = DateTime.Now;
         }
 
         public AddressType Type { get; protected set; }
@@ -39,7 +38,6 @@ namespace MRKT.Common.Domain.Entities.Application
             State = state;
             Zipcode = zipcode;
             PhoneNumber = phoneNumber;
-            CreatedAt = DateTime.Now;
         }
 
         public void Update(string firstName, string lastName, string steet, string steet2, string city, string state, string zipcode, PhoneNumber phoneNumber)
@@ -52,7 +50,6 @@ namespace MRKT.Common.Domain.Entities.Application
             State = state;
             Zipcode = zipcode;
             PhoneNumber = phoneNumber;
-            LastModified = DateTime.Now;
         }
 
         public void setCustomer(Guid customerId)

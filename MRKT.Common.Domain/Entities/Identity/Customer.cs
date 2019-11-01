@@ -13,7 +13,6 @@ namespace MRKT.Common.Domain.Entities.Identity
     {
         public Customer()
         {
-            CreatedAt = DateTime.Now;
             Orders = new HashSet<Order>();
             Addresses = new HashSet<Address>();
         }
@@ -33,7 +32,6 @@ namespace MRKT.Common.Domain.Entities.Identity
             Gender = gender;
             BirthDate = birthDate;
             ApplicationUserId = applicationUserId;
-            CreatedAt = DateTime.Now;
 
             RiseEvent(
                 new CustomerUpdatedEvent(
@@ -47,7 +45,6 @@ namespace MRKT.Common.Domain.Entities.Identity
         {
             Gender = gender;
             BirthDate = birthDate;
-            LastModified = DateTime.Now;
 
             RiseEvent(
                 new CustomerUpdatedEvent(

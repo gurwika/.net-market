@@ -8,7 +8,6 @@ namespace MRKT.Common.Domain.Entities.Application
     {
         public EventPosition()
         {
-            CreatedAt = DateTime.Now;
         }
 
         public EventSubscriberType Type { get; protected set; }
@@ -19,14 +18,12 @@ namespace MRKT.Common.Domain.Entities.Application
         {
             CommitPosition = commitPosition;
             PreparePosition = preparePosition;
-            CreatedAt = DateTime.Now;
         }
 
         public void Update(long commitPosition, long preparePosition)
         {
             CommitPosition = commitPosition;
             PreparePosition = preparePosition;
-            LastModified = DateTime.Now;
         }
     }
 }
