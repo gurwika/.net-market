@@ -9,14 +9,15 @@ using MRKT.Common.Application.Context.Abstraction;
 using MRKT.Common.Infrastructure;
 using MRKT.Common.Infrastructure.Middlewares;
 using MRKT.Common.Persistence;
-using MRKT.Product.Application;
+using MRKT.Identity.Application;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace MRKT.Product.WebApi
+namespace MRKT.Identity.Launcher
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
@@ -31,7 +32,7 @@ namespace MRKT.Product.WebApi
         {
             services.AddCommonInfrastructure(Configuration);
             services.AddCommonPersistence(Configuration);
-            services.AddProductionApplication(Configuration);
+            services.AddIdentityApplication(Configuration);
             services.AddHttpContextAccessor();
 
             services.AddControllers()
