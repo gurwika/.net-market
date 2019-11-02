@@ -45,6 +45,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MRKT.Common.Persistence.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRKT.Common.Infrastructure.Test", "MRKT.Common.Infrastructure.Test\MRKT.Common.Infrastructure.Test.csproj", "{90BFD252-C9D7-484A-A21A-B413F7D5EFF9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRKT.Common.Application.test", "MRKT.Common.Application.test\MRKT.Common.Application.test.csproj", "{CA2F2007-F5F4-419A-B62B-499D773448FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{90BFD252-C9D7-484A-A21A-B413F7D5EFF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90BFD252-C9D7-484A-A21A-B413F7D5EFF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90BFD252-C9D7-484A-A21A-B413F7D5EFF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA2F2007-F5F4-419A-B62B-499D773448FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA2F2007-F5F4-419A-B62B-499D773448FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA2F2007-F5F4-419A-B62B-499D773448FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA2F2007-F5F4-419A-B62B-499D773448FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -109,6 +115,7 @@ Global
 		{61B69B54-07F5-40B1-97B1-8B3188904FE4} = {2EF7FB93-A3A8-419E-95C3-1FFA3B72F7C1}
 		{292B1714-9E8B-4EAD-8268-1C3F6A021FAD} = {2EF7FB93-A3A8-419E-95C3-1FFA3B72F7C1}
 		{90BFD252-C9D7-484A-A21A-B413F7D5EFF9} = {2EF7FB93-A3A8-419E-95C3-1FFA3B72F7C1}
+		{CA2F2007-F5F4-419A-B62B-499D773448FF} = {2EF7FB93-A3A8-419E-95C3-1FFA3B72F7C1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {953B31FE-103E-46FB-B7EF-AB77CCF9886B}
