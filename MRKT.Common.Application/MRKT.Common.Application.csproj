@@ -10,4 +10,8 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MRKT.Common.Domain\MRKT.Common.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

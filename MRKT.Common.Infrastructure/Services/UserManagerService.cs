@@ -1,10 +1,15 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using IdentityModel;
+using IdentityServer4;
+using Microsoft.AspNetCore.Identity;
 using MRKT.Common.Application.Common.Abstraction;
 using MRKT.Common.Application.Common.Models;
 using MRKT.Common.Application.Exceptions;
 using MRKT.Common.Domain.Entities.Application;
+using MRKT.Common.Domain.Enumarations.Application;
 using MRKT.Common.Infrastructure.Extentions;
+using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace MRKT.Common.Infrastructure.Services
@@ -31,6 +36,30 @@ namespace MRKT.Common.Infrastructure.Services
             return (result.ToApplicationResult(), user.Id);
         }
 
+        public async Task<(Result Result, string UserId)> CreateUserAsync(string userName, string password, ApplicationUserType type)
+        {
+            var user = new ApplicationUser(
+                userName,
+                "Demo",
+                "Spa",
+                "1234567890"
+            );
+
+            var result = await _userManager.CreateAsync(user, password);
+
+            if (result.Succeeded)
+            {
+                await _userManager.AddClaimAsync(user, new Claim(JwtClaimTypes.Name, user.UserName));
+                await _userManager.AddClaimAsync(user, new Claim(JwtClaimTypes.GivenName, user.FirstName));
+                await _userManager.AddClaimAsync(user, new Claim(IdentityServerConstants.StandardScopes.Email, user.Email));
+                await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, type.ToString()));
+
+                result = await _userManager.AddToRoleAsync(user, type.ToString());
+            }
+
+            return (result.ToApplicationResult(), user.Id);
+        }
+
         public async Task<Result> DeleteUserAsync(string userId)
         {
             var user = _userManager.Users.SingleOrDefault(u => u.Id == userId);
@@ -43,6 +72,11 @@ namespace MRKT.Common.Infrastructure.Services
             var result = await _userManager.DeleteAsync(user);
 
             return result.ToApplicationResult();
+        }
+
+        public async Task<bool> UserExistsAsync(string userName)
+        {
+            return await Task.FromResult<bool>(_userManager.Users.Any(u => u.UserName == userName));
         }
     }
 }

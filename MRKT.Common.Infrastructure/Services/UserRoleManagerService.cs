@@ -43,5 +43,10 @@ namespace MRKT.Common.Infrastructure.Services
 
             return result.ToApplicationResult();
         }
+
+        public Task<bool> RoleExistsAsync(string roleName)
+        {
+            return _roleManager.RoleExistsAsync(roleName);
+        }
     }
 }

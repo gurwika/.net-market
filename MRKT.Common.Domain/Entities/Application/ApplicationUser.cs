@@ -20,10 +20,10 @@ namespace MRKT.Common.Domain.Entities.Application
         public virtual Seller Seller { get; private set; }
         public virtual Customer Customer { get; private set; }
 
-        public ApplicationUser(string id,  string email, string firstName, string lastName, string personalId)
+        public ApplicationUser(string email, string firstName, string lastName, string personalId)
         {
-            Id = id;
             Email = email;
+            UserName = email;
             FirstName = firstName;
             LastName = lastName;
             PersonalId = personalId;
