@@ -1,15 +1,13 @@
 ﻿using AutoMapper;
 using MediatR;
 using MRKT.Common.Application.Context.Abstraction;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using MRKT.Common.Domain.Common.Abstraction.Queries;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace MRKT.Identity.Application.Addresses.Queries.GetCustomerAddressList
 {
-    public class GetCustomerAddressListQueryHandler : IRequestHandler<GetCustomerAddressListQuery, GetCustomerAddressListVM>
+    public class GetCustomerAddressListQueryHandler : IQueryHandler<GetCustomerAddressListQuery, GetCustomerAddressListVM>
     {
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;

@@ -34,7 +34,7 @@ namespace MRKT.Common.Domain.Entities.Identity
             ApplicationUserId = applicationUserId;
 
             RiseEvent(
-                new CustomerUpdatedEvent(
+                new CustomerCreatedEvent(
                     Id,
                     JsonConvert.SerializeObject(this)
                 )

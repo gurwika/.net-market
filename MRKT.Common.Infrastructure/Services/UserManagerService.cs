@@ -36,15 +36,8 @@ namespace MRKT.Common.Infrastructure.Services
             return (result.ToApplicationResult(), user.Id);
         }
 
-        public async Task<(Result Result, string UserId)> CreateUserAsync(string userName, string password, ApplicationUserType type)
+        public async Task<(Result Result, string UserId)> CreateUserAsync(ApplicationUser user, ApplicationUserType type, string password)
         {
-            var user = new ApplicationUser(
-                userName,
-                "Demo",
-                "Spa",
-                "1234567890"
-            );
-
             var result = await _userManager.CreateAsync(user, password);
 
             if (result.Succeeded)

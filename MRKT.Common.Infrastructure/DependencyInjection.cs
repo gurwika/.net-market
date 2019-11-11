@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MRKT.Common.Application.Common.Abstraction;
+using MRKT.Common.Infrastructure.Common;
 using MRKT.Common.Infrastructure.Services;
 
 namespace MRKT.Common.Infrastructure
@@ -9,6 +10,8 @@ namespace MRKT.Common.Infrastructure
     {
         public static IServiceCollection AddCommonInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddScoped<IEventBus, EventBus>();
+
             services.AddScoped<IUserManagerService, UserManagerService>();
             services.AddScoped<IUserRoleManagerService, UserRoleManagerService>();
             services.AddTransient<ICurrentUserService, CurrentUserService>();

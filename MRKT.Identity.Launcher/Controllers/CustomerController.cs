@@ -1,22 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MediatR;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MRKT.Identity.Application.Addresses.Queries.GetCustomerAddressList;
+using MRKT.Identity.Application.Customers.Commands.CreateCustomer;
 
 namespace MRKT.Identity.Launcher.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class CustomerController : BaseController
     {
-        [HttpGet]
-        public async Task<ActionResult<GetCustomerAddressListVM>> Get()
+        [HttpPost]
+        [AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> Create([FromBody]CreateCustomerCommand command)
         {
-            return Ok(await Mediator.Send(new GetCustomerAddressListQuery()));
+            await Mediator.Send(command);
+
+            return NoContent();
         }
     }
 }
