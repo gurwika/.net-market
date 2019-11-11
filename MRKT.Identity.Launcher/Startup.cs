@@ -1,4 +1,5 @@
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,7 @@ using MRKT.Common.Persistence;
 using MRKT.Identity.Application;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using NSwag;
 
 namespace MRKT.Identity.Launcher
 {
@@ -45,9 +47,24 @@ namespace MRKT.Identity.Launcher
                 })
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<IApplicationDbContext>());
 
-            services.AddOpenApiDocument(configure =>
+            services.AddOpenApiDocument(options =>
             {
-                configure.Title = "Northwind Traders API";
+                options.DocumentName = "MRKT-app";
+                options.Title = "MRKT-app api";
+                options.Description = "MRKT-app description";
+
+                options.GenerateEnumMappingDescription = true;
+
+                var accessTokenSecurityScheme = new OpenApiSecurityScheme();
+                accessTokenSecurityScheme.AuthorizationUrl = "http://localhost:62744";
+                accessTokenSecurityScheme.Flow = OpenApiOAuth2Flow.Password;
+                accessTokenSecurityScheme.Scheme = JwtBearerDefaults.AuthenticationScheme;
+                accessTokenSecurityScheme.Type = OpenApiSecuritySchemeType.ApiKey;
+                accessTokenSecurityScheme.In = OpenApiSecurityApiKeyLocation.Header;
+                accessTokenSecurityScheme.Name = "Authorization";
+                accessTokenSecurityScheme.Description = "Copy 'Bearer ' + valid JWT token into field";
+
+                options.AddSecurity("MRKT-app bearer token", new[] { "profile", "offline_access" }, accessTokenSecurityScheme);
             });
 
             // Customise default API behaviour
