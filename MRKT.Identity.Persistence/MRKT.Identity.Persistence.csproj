@@ -5,12 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Addresses\**" />
-    <EmbeddedResource Remove="Addresses\**" />
-    <None Remove="Addresses\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MediatR" Version="7.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
@@ -23,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MRKT.Common.Application\MRKT.Common.Application.csproj" />
     <ProjectReference Include="..\MRKT.Common.Domain\MRKT.Common.Domain.csproj" />
+    <ProjectReference Include="..\MRKT.Common.Persistence\MRKT.Common.Persistence.csproj" />
   </ItemGroup>
-  
+
 </Project>

@@ -11,6 +11,7 @@ using MRKT.Common.Infrastructure;
 using MRKT.Common.Infrastructure.Middlewares;
 using MRKT.Common.Persistence;
 using MRKT.Identity.Application;
+using MRKT.Identity.Persistence;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using NSwag;
@@ -34,6 +35,8 @@ namespace MRKT.Identity.Launcher
         {
             services.AddCommonInfrastructure(Configuration);
             services.AddCommonPersistence(Configuration);
+            services.AddIdentityPersistence(Configuration);
+            services.AddCommonAuthentication();
             services.AddIdentityApplication(Configuration);
             services.AddHttpContextAccessor();
 

@@ -29,6 +29,7 @@
     <ProjectReference Include="..\MRKT.Common.Infrastructure\MRKT.Common.Infrastructure.csproj" />
     <ProjectReference Include="..\MRKT.Common.Persistence\MRKT.Common.Persistence.csproj" />
     <ProjectReference Include="..\MRKT.Identity.Application\MRKT.Identity.Application.csproj" />
+    <ProjectReference Include="..\MRKT.Identity.Persistence\MRKT.Identity.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

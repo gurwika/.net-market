@@ -1,12 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.5.0" />
@@ -30,6 +26,7 @@
     <ProjectReference Include="..\MRKT.Common.Infrastructure\MRKT.Common.Infrastructure.csproj" />
     <ProjectReference Include="..\MRKT.Common.Persistence\MRKT.Common.Persistence.csproj" />
     <ProjectReference Include="..\MRKT.Product.Application\MRKT.Product.Application.csproj" />
+    <ProjectReference Include="..\MRKT.Product.Persistence\MRKT.Product.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

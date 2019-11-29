@@ -1,4 +1,5 @@
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -10,8 +11,10 @@ using MRKT.Common.Infrastructure;
 using MRKT.Common.Infrastructure.Middlewares;
 using MRKT.Common.Persistence;
 using MRKT.Product.Application;
+using MRKT.Product.Persistence;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using NSwag;
 
 namespace MRKT.Product.WebApi
 {
@@ -31,6 +34,8 @@ namespace MRKT.Product.WebApi
         {
             services.AddCommonInfrastructure(Configuration);
             services.AddCommonPersistence(Configuration);
+            services.AddProductPersistence(Configuration);
+            services.AddCommonAuthentication();
             services.AddProductionApplication(Configuration);
             services.AddHttpContextAccessor();
 
@@ -44,9 +49,24 @@ namespace MRKT.Product.WebApi
                 })
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<IApplicationDbContext>());
 
-            services.AddOpenApiDocument(configure =>
+            services.AddOpenApiDocument(options =>
             {
-                configure.Title = "Northwind Traders API";
+                options.DocumentName = "MRKT-app";
+                options.Title = "MRKT-app api";
+                options.Description = "MRKT-app description";
+
+                options.GenerateEnumMappingDescription = true;
+
+                var accessTokenSecurityScheme = new OpenApiSecurityScheme();
+                accessTokenSecurityScheme.AuthorizationUrl = "http://localhost:62744";
+                accessTokenSecurityScheme.Flow = OpenApiOAuth2Flow.Password;
+                accessTokenSecurityScheme.Scheme = JwtBearerDefaults.AuthenticationScheme;
+                accessTokenSecurityScheme.Type = OpenApiSecuritySchemeType.ApiKey;
+                accessTokenSecurityScheme.In = OpenApiSecurityApiKeyLocation.Header;
+                accessTokenSecurityScheme.Name = "Authorization";
+                accessTokenSecurityScheme.Description = "Copy 'Bearer ' + valid JWT token into field";
+
+                options.AddSecurity("MRKT-app bearer token", new[] { "profile", "offline_access" }, accessTokenSecurityScheme);
             });
 
             // Customise default API behaviour
@@ -84,7 +104,6 @@ namespace MRKT.Product.WebApi
             app.UseRouting();
 
             app.UseAuthentication();
-            app.UseIdentityServer();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {

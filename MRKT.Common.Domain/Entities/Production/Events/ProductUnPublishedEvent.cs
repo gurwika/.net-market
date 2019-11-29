@@ -6,6 +6,7 @@ namespace MRKT.Common.Domain.Entities.Production.Events
     public class ProductUnPublishedEvent : IEvent
     {
         public Guid Id { get; protected set; }
+        public string Payload { get; protected set; }
 
         public ProductUnPublishedEvent(Guid id)
         {

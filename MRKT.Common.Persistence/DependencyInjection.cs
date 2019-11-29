@@ -1,5 +1,4 @@
-﻿using IdentityServer4.Models;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
@@ -8,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MRKT.Common.Application.Context.Abstraction;
 using MRKT.Common.Domain.Entities.Application;
 using MRKT.Common.Persistence.Context;
+using System.Security.Cryptography.X509Certificates;
 
 namespace MRKT.Common.Persistence
 {
@@ -29,39 +29,22 @@ namespace MRKT.Common.Persistence
 
             services.AddScoped<IApplicationDbContext>(x => x.GetService<ApplicationDbContext>());
 
-            services.AddIdentityServer()
-              .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
-              {
-                  options.Clients.Add(new Client
-                  {
-                      ClientId = "Identity.api",
-                      AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
-                      ClientSecrets = { new Secret("Identity.Secret".Sha256()) },
-                      AllowedScopes = { "MRKT.Identity.LauncherAPI" }
-                  });
-                  options.Clients.Add(new Client
-                  {
-                      ClientId = "Product.api",
-                      ClientSecrets = { new Secret("Product.Secret".Sha256()) },
-                      AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
-                      AllowedScopes = { "MRKT.Identity.LauncherAPI", "MRKT.Product.LauncherAPI" }
-                  });
-                  options.Clients.Add(new Client
-                  {
-                      ClientId = "Payment.api",
-                      ClientSecrets = { new Secret("Payment.Secret".Sha256()) },
-                      AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
-                      AllowedScopes = { "MRKT.Identity.LauncherAPI", "MRKT.Product.LauncherAPI", "MRKT.Payment.LauncherAPI" }
-                  });
-
-                  options.ApiResources.Add(new ApiResource("MRKT.Product.LauncherAPI", "product service"));
-                  options.ApiResources.Add(new ApiResource("MRKT.Payment.LauncherAPI", "payment service"));
-              });
-
+            return services;
+        }
+        public static IServiceCollection AddCommonAuthentication(this IServiceCollection services)
+        {
             services.AddAuthentication()
                 .AddIdentityServerJwt();
 
             return services;
+        }
+
+        public static IIdentityServerBuilder AddSigningCredential(this IIdentityServerBuilder builder, IConfigurationSection options)
+        {
+            var keyFilePath = options.GetValue<string>("KeyFilePath");
+            var keyFilePassword = options.GetValue<string>("KeyFilePassword");
+            builder.AddSigningCredential(new X509Certificate2(keyFilePath, keyFilePassword));
+            return builder;
         }
     }
 }

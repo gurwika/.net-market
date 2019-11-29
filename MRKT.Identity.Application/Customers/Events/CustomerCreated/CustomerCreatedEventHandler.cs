@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using MRKT.Common.Application.Common.Abstraction;
 using MRKT.Common.Application.Common.Handlers;
 using MRKT.Common.Application.Context.Abstraction;
 using MRKT.Common.Domain.Common.Abstraction.Events;
@@ -12,7 +13,7 @@ namespace MRKT.Identity.Application.Customers.Events.CustomerUpdated
 {
     public class CustomerCreatedEventHandler : DomainEventHandler, IEventHandler<CustomerCreatedEvent>
     {
-        public CustomerCreatedEventHandler(IApplicationDbContext context) : base(context)
+        public CustomerCreatedEventHandler(IApplicationDbContext context, IApplicationEventStore applicationEventStore) : base(context, applicationEventStore)
         {
         }
 
@@ -24,6 +25,8 @@ namespace MRKT.Identity.Application.Customers.Events.CustomerUpdated
             );
 
             _context.Add(cart);
+
+            _applicationEventStore.Store(notification);
 
             await SaveAndPublish(cancellationToken);
         }

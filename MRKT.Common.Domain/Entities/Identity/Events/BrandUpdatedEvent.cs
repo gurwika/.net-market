@@ -6,15 +6,15 @@ namespace MRKT.Common.Domain.Entities.Identity.Events
     public class BrandUpdatedEvent : IEvent
     {
         public Guid Id { get; protected set; }
-        public string Data { get; protected set; }
+        public string Payload { get; }
 
         public BrandUpdatedEvent(
             Guid id,
-            string data
+            string payload
         )
         {
             Id = id;
-            Data = data;
+            Payload = payload;
         }
     }
 }

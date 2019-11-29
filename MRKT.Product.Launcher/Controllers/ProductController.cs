@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MRKT.Identity.Launcher.Controllers
+namespace MRKT.Product.Launcher.Controllers
 {
-    public class AddressController : BaseController
+    public class ProductController : BaseController
     {
         [HttpGet]
         public IEnumerable<string> Get()

@@ -5,7 +5,9 @@ namespace MRKT.Common.Domain.Entities.Identity.Events
 {
     public class BrandDeletedEvent : IEvent
     {
-        public Guid Id { get; }
+        public Guid Id { get; protected set; }
+
+        public string Payload { get; protected set; }
 
         public BrandDeletedEvent(Guid id)
         {

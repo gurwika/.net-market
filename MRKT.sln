@@ -43,9 +43,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MRKT.Common.Domain.Test", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MRKT.Common.Persistence.Test", "MRKT.Common.Persistence.Test\MRKT.Common.Persistence.Test.csproj", "{292B1714-9E8B-4EAD-8268-1C3F6A021FAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRKT.Common.Infrastructure.Test", "MRKT.Common.Infrastructure.Test\MRKT.Common.Infrastructure.Test.csproj", "{90BFD252-C9D7-484A-A21A-B413F7D5EFF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MRKT.Common.Infrastructure.Test", "MRKT.Common.Infrastructure.Test\MRKT.Common.Infrastructure.Test.csproj", "{90BFD252-C9D7-484A-A21A-B413F7D5EFF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRKT.Common.Application.test", "MRKT.Common.Application.test\MRKT.Common.Application.test.csproj", "{CA2F2007-F5F4-419A-B62B-499D773448FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MRKT.Common.Application.test", "MRKT.Common.Application.test\MRKT.Common.Application.test.csproj", "{CA2F2007-F5F4-419A-B62B-499D773448FF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{8F94F71F-BE7E-4CA9-97FF-B196E17D9FC3}"
 EndProject
@@ -53,9 +53,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{4C6B2B28-2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{4ABEB72A-246E-414A-A38C-98D5BF3B189D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRKT.Identity.Application", "MRKT.Identity.Application\MRKT.Identity.Application.csproj", "{28FF8FD5-BC7B-44C9-A937-9BB85AC983E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MRKT.Identity.Application", "MRKT.Identity.Application\MRKT.Identity.Application.csproj", "{28FF8FD5-BC7B-44C9-A937-9BB85AC983E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRKT.Identity.Launcher", "MRKT.Identity.Launcher\MRKT.Identity.Launcher.csproj", "{06FA9DFF-74D8-4F48-A49E-92AF5CD6921D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MRKT.Identity.Launcher", "MRKT.Identity.Launcher\MRKT.Identity.Launcher.csproj", "{06FA9DFF-74D8-4F48-A49E-92AF5CD6921D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRKT.Identity.Persistence", "MRKT.Identity.Persistence\MRKT.Identity.Persistence.csproj", "{E0BEE2BC-8BE1-4BB3-BC6D-DB15DAA338DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRKT.Product.Persistence", "MRKT.Product.Persistence\MRKT.Product.Persistence.csproj", "{6D3072F3-D24A-4105-A28D-F6C81D946DE6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +115,14 @@ Global
 		{06FA9DFF-74D8-4F48-A49E-92AF5CD6921D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06FA9DFF-74D8-4F48-A49E-92AF5CD6921D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06FA9DFF-74D8-4F48-A49E-92AF5CD6921D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0BEE2BC-8BE1-4BB3-BC6D-DB15DAA338DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0BEE2BC-8BE1-4BB3-BC6D-DB15DAA338DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0BEE2BC-8BE1-4BB3-BC6D-DB15DAA338DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0BEE2BC-8BE1-4BB3-BC6D-DB15DAA338DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D3072F3-D24A-4105-A28D-F6C81D946DE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D3072F3-D24A-4105-A28D-F6C81D946DE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D3072F3-D24A-4105-A28D-F6C81D946DE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D3072F3-D24A-4105-A28D-F6C81D946DE6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -139,6 +151,8 @@ Global
 		{4ABEB72A-246E-414A-A38C-98D5BF3B189D} = {8F94F71F-BE7E-4CA9-97FF-B196E17D9FC3}
 		{28FF8FD5-BC7B-44C9-A937-9BB85AC983E5} = {4C6B2B28-24A1-4E77-9AA5-89086E3E9130}
 		{06FA9DFF-74D8-4F48-A49E-92AF5CD6921D} = {4ABEB72A-246E-414A-A38C-98D5BF3B189D}
+		{E0BEE2BC-8BE1-4BB3-BC6D-DB15DAA338DC} = {4C6B2B28-24A1-4E77-9AA5-89086E3E9130}
+		{6D3072F3-D24A-4105-A28D-F6C81D946DE6} = {D8BB0946-B10D-4C9C-9D89-5B50722C464D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {953B31FE-103E-46FB-B7EF-AB77CCF9886B}
