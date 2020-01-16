@@ -14,8 +14,9 @@ namespace MRKT.Common.Domain.Entities.Application
         public long CommitPosition { get; protected set; }
         public long PreparePosition { get; protected set; }
 
-        public EventPosition(long commitPosition, long preparePosition)
+        public EventPosition(EventSubscriberType type, long commitPosition, long preparePosition)
         {
+            Type = type;
             CommitPosition = commitPosition;
             PreparePosition = preparePosition;
         }

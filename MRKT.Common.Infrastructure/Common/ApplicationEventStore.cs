@@ -34,11 +34,11 @@ namespace MRKT.Common.Infrastructure.Common
                     @event.Id,
                     @event.GetType().Name,
                     true,
-                    Encoding.UTF8.GetBytes(@event.Payload),
+                    Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(@event)),
                     Encoding.UTF8.GetBytes(
                         JsonConvert.SerializeObject(new
                         {
-                            Ip = _currentUserService.Ip,
+                            Ip = _currentUserService.Ip.ToString(),
                             UserId = _currentUserService.UserId
                         })
                     )

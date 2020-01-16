@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using MediatR;
 using MRKT.Common.Application.Context.Abstraction;
 using MRKT.Common.Domain.Common.Abstraction.Queries;
 using System.Threading;

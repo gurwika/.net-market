@@ -8,7 +8,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MRKT.Common.Application.Context.Abstraction;
 using MRKT.Common.Infrastructure;
+using MRKT.Common.Infrastructure.Extentions;
 using MRKT.Common.Infrastructure.Middlewares;
+using MRKT.Common.Infrastructure.Utils;
 using MRKT.Common.Persistence;
 using MRKT.Identity.Application;
 using MRKT.Identity.Persistence;
@@ -41,34 +43,9 @@ namespace MRKT.Identity.Launcher
             services.AddHttpContextAccessor();
 
             services.AddControllers()
-                .AddNewtonsoftJson(options =>
-                {
-                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                    options.SerializerSettings.TypeNameHandling = TypeNameHandling.Objects;
-                    options.SerializerSettings.DateFormatString = "dd-MM-yyyy";
-                    options.SerializerSettings.Converters.Add(new IsoDateTimeConverter() { DateTimeFormat = "dd-MM-yyyy HH:mm:ss.FFFFFFFK" });
-                })
-                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<IApplicationDbContext>());
+                .AddControllersInfrastructure();
 
-            services.AddOpenApiDocument(options =>
-            {
-                options.DocumentName = "MRKT-app";
-                options.Title = "MRKT-app api";
-                options.Description = "MRKT-app description";
-
-                options.GenerateEnumMappingDescription = true;
-
-                var accessTokenSecurityScheme = new OpenApiSecurityScheme();
-                accessTokenSecurityScheme.AuthorizationUrl = "http://localhost:62744";
-                accessTokenSecurityScheme.Flow = OpenApiOAuth2Flow.Password;
-                accessTokenSecurityScheme.Scheme = JwtBearerDefaults.AuthenticationScheme;
-                accessTokenSecurityScheme.Type = OpenApiSecuritySchemeType.ApiKey;
-                accessTokenSecurityScheme.In = OpenApiSecurityApiKeyLocation.Header;
-                accessTokenSecurityScheme.Name = "Authorization";
-                accessTokenSecurityScheme.Description = "Copy 'Bearer ' + valid JWT token into field";
-
-                options.AddSecurity("MRKT-app bearer token", new[] { "profile", "offline_access" }, accessTokenSecurityScheme);
-            });
+            services.AddSwaggerDocument();
 
             // Customise default API behaviour
             services.Configure<ApiBehaviorOptions>(options =>

@@ -31,5 +31,7 @@
     <ProjectReference Include="..\MRKT.Identity.Application\MRKT.Identity.Application.csproj" />
     <ProjectReference Include="..\MRKT.Identity.Persistence\MRKT.Identity.Persistence.csproj" />
   </ItemGroup>
+  
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
 </Project>

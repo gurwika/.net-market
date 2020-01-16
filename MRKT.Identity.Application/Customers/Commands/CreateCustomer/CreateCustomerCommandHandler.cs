@@ -7,10 +7,7 @@ using MRKT.Common.Domain.Entities.Application;
 using MRKT.Common.Domain.Entities.Identity;
 using MRKT.Common.Domain.Enumarations.Application;
 using MRKT.Common.Domain.Exceptions;
-using MRKT.Identity.Application.System.Commands.SeedSampleData;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -45,7 +42,7 @@ namespace MRKT.Identity.Application.Customers.Commands.CreateCustomer
 
             if(!identityResult.Result.Succeeded)
             {
-                throw new DomainException(String.Join(", ", identityResult.Result.Errors));
+                throw new DomainException(string.Join(", ", identityResult.Result.Errors));
             }
 
             var customer = new Customer(

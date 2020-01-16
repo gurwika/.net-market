@@ -7,7 +7,6 @@ using MRKT.Common.Application.Exceptions;
 using MRKT.Common.Domain.Entities.Application;
 using MRKT.Common.Domain.Enumarations.Application;
 using MRKT.Common.Infrastructure.Extentions;
-using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
