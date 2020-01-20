@@ -1,7 +1,9 @@
 using System.Reflection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MRKT.Identity.Persistence.Common;
 
 namespace MRKT.Product.WebApi
 {
@@ -44,6 +46,10 @@ namespace MRKT.Product.WebApi
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                })
+                .ConfigureServices(services =>
+                {
+                    services.AddHostedService<ProductHostedSubscriber>();
                 });
     }
 }

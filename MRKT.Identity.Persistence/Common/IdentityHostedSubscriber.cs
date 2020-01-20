@@ -1,22 +1,27 @@
-﻿
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MRKT.Common.Application.Common.Abstraction;
+using MRKT.Common.Domain.Entities.Identity.Events;
 using MRKT.Common.Domain.Enumarations.Application;
 using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MRKT.Product.Application.Common
+namespace MRKT.Identity.Persistence.Common
 {
-    public class ProductHostedSubscriber : IHostedService
+    public class IdentityHostedSubscriber : IHostedService, IDisposable
     {
         private readonly IServiceProvider _services;
 
-        public ProductHostedSubscriber(IServiceProvider services)
+        public IdentityHostedSubscriber(IServiceProvider services)
         {
             _services = services;
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
@@ -25,7 +30,7 @@ namespace MRKT.Product.Application.Common
             {
                 scope.ServiceProvider
                     .GetRequiredService<IApplicationEventSubscription>()
-                        .Subscribe(EventSubscriberType.Production, new List<string> { "CustomerCreatedEvent" });
+                        .Subscribe(EventSubscriberType.Identity, new List<string> { typeof(CustomerCreatedEvent).Name });
             }
 
             return Task.CompletedTask;

@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using MRKT.Common.Persistence.Context;
 using MRKT.Identity.Application.System.Commands.SeedSampleData;
+using MRKT.Identity.Persistence.Common;
 
 namespace MRKT.Identity.Launcher
 {
@@ -72,6 +73,10 @@ namespace MRKT.Identity.Launcher
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                })
+                .ConfigureServices(services =>
+                {
+                    services.AddHostedService<IdentityHostedSubscriber>();
                 });
     }
 }

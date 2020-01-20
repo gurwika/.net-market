@@ -19,7 +19,7 @@ namespace MRKT.Common.Infrastructure
             services.AddTransient<IApplicationEventSubscription, ApplicationEventSubscription>();
 
             services.AddScoped<IStoredEventSerializer>(
-                    x => new StoredEventSerializer(typeof(IEvent).Assembly)
+                x => new StoredEventSerializer(typeof(IEvent).Assembly)
             );
 
             services.AddScoped<IUserManagerService, UserManagerService>();

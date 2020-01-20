@@ -1,12 +1,8 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using AutoMapper;
-using EventStore.ClientAPI;
-using EventStore.ClientAPI.SystemData;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MRKT.Product.Application.Common;
 
 namespace MRKT.Product.Application
 {
@@ -16,8 +12,6 @@ namespace MRKT.Product.Application
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddMediatR(Assembly.GetExecutingAssembly());
-
-            services.AddHostedService<ProductHostedSubscriber>();
 
             return services;
         }
