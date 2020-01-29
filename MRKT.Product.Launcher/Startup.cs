@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MRKT.Common.Application;
 using MRKT.Common.Application.Context.Abstraction;
 using MRKT.Common.Infrastructure;
 using MRKT.Common.Infrastructure.Extentions;
@@ -14,9 +15,6 @@ using MRKT.Common.Infrastructure.Utils;
 using MRKT.Common.Persistence;
 using MRKT.Product.Application;
 using MRKT.Product.Persistence;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using NSwag;
 
 namespace MRKT.Product.WebApi
 {
@@ -36,9 +34,10 @@ namespace MRKT.Product.WebApi
         {
             services.AddCommonInfrastructure(Configuration);
             services.AddCommonPersistence(Configuration);
+            services.AddProductionApplication();
+
             services.AddProductPersistence(Configuration);
             services.AddCommonAuthentication();
-            services.AddProductionApplication(Configuration);
             services.AddHttpContextAccessor();
 
             services.AddControllers()

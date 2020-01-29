@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace MRKT.Common.Application.Common.Mappings.Abstraction
+namespace MRKT.Common.Application.Mappings.Abstraction
 {
     public interface IMapFrom<T>
     {

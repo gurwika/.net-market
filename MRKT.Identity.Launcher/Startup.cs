@@ -1,3 +1,4 @@
+using AutoMapper;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MRKT.Common.Application;
 using MRKT.Common.Application.Context.Abstraction;
 using MRKT.Common.Infrastructure;
 using MRKT.Common.Infrastructure.Extentions;
@@ -17,6 +19,7 @@ using MRKT.Identity.Persistence;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using NSwag;
+using System.Reflection;
 
 namespace MRKT.Identity.Launcher
 {
@@ -37,9 +40,11 @@ namespace MRKT.Identity.Launcher
         {
             services.AddCommonInfrastructure(Configuration);
             services.AddCommonPersistence(Configuration);
+            services.AddIdentityApplication();
+
             services.AddIdentityPersistence(Configuration);
             services.AddCommonAuthentication();
-            services.AddIdentityApplication(Configuration);
+
             services.AddHttpContextAccessor();
 
             services.AddControllers()
