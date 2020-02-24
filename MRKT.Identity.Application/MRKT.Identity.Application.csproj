@@ -17,12 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Brands\Queries\" />
+    <ProjectReference Include="..\MRKT.Common.Application\MRKT.Common.Application.csproj" />
+    <ProjectReference Include="..\MRKT.Common.Domain\MRKT.Common.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MRKT.Common.Application\MRKT.Common.Application.csproj" />
-    <ProjectReference Include="..\MRKT.Common.Domain\MRKT.Common.Domain.csproj" />
+    <Folder Include="Brands\Commands\" />
   </ItemGroup>
   
 </Project>
